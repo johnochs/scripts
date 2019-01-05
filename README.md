@@ -8,5 +8,6 @@
 
 ## Contents
 
-* [Files](https://code.jho.io/repos/scripts/cat/files/manifest.md)
-* [Networking](https://code.jho.io/repos/scripts/cat/networking/manifest.md)
+* [Files](files/files.md)
+* [Networking](networking/networking.md)
+* [Git](git/git.md)

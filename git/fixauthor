@@ -1,0 +1,57 @@
+#!/bin/bash
+
+
+current_name=$(git config user.name)
+current_email=$(git config user.email)
+correct_name=
+correct_email=
+old_name=
+old_email=
+
+function prompt0 {
+	clear
+	echo; echo; echo;
+	cat <<-PROMPT
+		The current author is '$current_name' <$current_email>.
+
+		Please choose from the below options:
+
+		   (1) 
+		   (2) Only the email is correct.
+		   (3) Both are correct.
+		   (4) Neither are correct.
+
+	PROMPT
+}
+
+function getResponse {
+	read -n 1 resp
+
+	case $resp in
+		1)
+			correct_name=$current_name
+			getEmail
+			;;
+		2)
+			correct_email=$current_email
+			getName
+			;;
+		3)
+			correct_email=$current_email
+			correct_name=$current_name
+			;;
+		4)
+			getName
+			getEmail
+			;;
+		*)
+			echo 'Please choose options 1-4.'
+	esac
+}
+
+{ which git >/dev/null; } || { echo "Git is not installed."; exit 1; }
+git status . >/dev/null
+[ $? ] || { echo 'Not a git directory.'; exit 1; }
+
+
+exit 0
